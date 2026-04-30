@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import FakeStore from "./FakeStore";
-import unsplash from "./unsplash";
-import { ImInsertTemplate } from "react-icons/im";
+import unsplash from "./Unsplash"
 
 function ControlApi({setAdd}) {
   const [displayApi, setDisplayApi] = useState([]);
