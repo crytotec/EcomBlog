@@ -59,8 +59,8 @@ function DataFull({ setAdd }) {
 
       {/* RATING */}
       <div className="flex items-center gap-2 mt-2">
+         <p>Rate: {data.rate}</p>
         <FaStar className="text-yellow-500" />
-        <p>{data.rate}</p>
       </div>
 
       {/* PRICE */}
