@@ -59,7 +59,7 @@ function Cart({ Add, setAdd }) {
                     By {item.user.name}
                   </p>
                   <p className="text-green-700 font-bold mt-1">
-                    ₦{item.price}
+                    ${item.price}
                   </p>
                     <p className="text-green-700 font-bold mt-1">
                     Quantity {item.quantity}
