@@ -25,6 +25,7 @@ import ProtectedRoute from "./Route/ProtectedRoute";
 
 import { Toaster } from "react-hot-toast";
 import NotFound from "./Pages/NotFound";
+import ResetPassword from "./Pages/ResetPassword";
 
 
 const authPages = [
@@ -53,11 +54,14 @@ function AppContent() {
             path="/register"
             element={<Register />}
           />
-
+    
           <Route
             path="/forgot-password"
             element={<ForgotPasswordPage />}
           />
+          <Route 
+          path="/reset-password/:token"
+          element={<ResetPassword/>}/>
         </Routes>
       </>
     );

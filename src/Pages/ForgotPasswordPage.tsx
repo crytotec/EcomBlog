@@ -32,13 +32,19 @@ function ForgotPasswordPage() {
     try {
       setLoading(true);
 
-      await forgotPassword(email);
+      await forgotPassword(email.trim());
 
       setSubmitted(true);
+
       toast.success("Reset link sent to your email");
-    } catch (error) {
+    } catch (error: any) {
       console.error("Forgot password error:", error);
-      toast.error("Unable to send reset link");
+
+      const message =
+        error?.response?.data?.message ||
+        "Unable to send reset link";
+
+      toast.error(message);
     } finally {
       setLoading(false);
     }
@@ -104,6 +110,7 @@ function ForgotPasswordPage() {
 
           {!submitted ? (
             <>
+              {/* Title */}
               <h1
                 className="text-3xl mb-2"
                 style={{
@@ -190,6 +197,8 @@ function ForgotPasswordPage() {
           ) : (
             /* Success state */
             <div className="text-center py-3">
+
+              {/* Mail icon */}
               <div
                 className="mx-auto mb-5 w-14 h-14 rounded-full flex items-center justify-center"
                 style={{
@@ -200,6 +209,7 @@ function ForgotPasswordPage() {
                 <Mail size={24} />
               </div>
 
+              {/* Title */}
               <h1
                 className="text-2xl mb-3"
                 style={{
@@ -210,42 +220,63 @@ function ForgotPasswordPage() {
                 Check your inbox
               </h1>
 
+              {/* Message */}
               <p
                 className="text-sm leading-6 mb-5"
                 style={{ color: "#4A473E" }}
               >
                 If an account exists for{" "}
-                <strong style={{ color: C.ink }}>{email}</strong>,
-                we've sent instructions to reset your password.
+                <strong style={{ color: C.ink }}>
+                  {email}
+                </strong>
+                , we've sent instructions to reset your password.
               </p>
 
+              {/* Help */}
               <p
-                className="text-xs leading-5"
+                className="text-xs leading-5 mb-6"
                 style={{ color: "#8A8674" }}
               >
-                Didn't receive anything? Check your spam folder or try
-                again with the email you used to create your account.
+                Didn't receive anything? Check your spam folder
+                or try again with the email you used to create
+                your account.
               </p>
+
+              {/* Back to login */}
+              <Link
+                to="/login"
+                className="inline-flex items-center justify-center gap-2 text-sm hover:opacity-60 transition-opacity"
+                style={{
+                  color: C.oxblood,
+                  fontFamily: "'Source Serif 4', serif",
+                  fontWeight: 500,
+                }}
+              >
+                <ArrowLeft size={14} />
+                Back to sign in
+              </Link>
             </div>
           )}
         </div>
 
         {/* Back to login */}
-        <div className="text-center mt-6">
-          <Link
-            to="/login"
-            className="inline-flex items-center gap-2 text-sm hover:opacity-60 transition-opacity"
-            style={{
-              color: C.oxblood,
-              fontFamily: "'Source Serif 4', serif",
-            }}
-          >
-            <ArrowLeft size={14} />
-            Back to sign in
-          </Link>
-        </div>
+        {!submitted && (
+          <div className="text-center mt-6">
+            <Link
+              to="/login"
+              className="inline-flex items-center gap-2 text-sm hover:opacity-60 transition-opacity"
+              style={{
+                color: C.oxblood,
+                fontFamily: "'Source Serif 4', serif",
+              }}
+            >
+              <ArrowLeft size={14} />
+              Back to sign in
+            </Link>
+          </div>
+        )}
 
-        {/* Small security note */}
+        {/* Security note */}
         <p
           className="text-center text-xs mt-5 leading-5"
           style={{

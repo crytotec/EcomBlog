@@ -3,6 +3,7 @@ import { userAuth } from "../context/AuthContext";
 import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 const C = {
   ink: "#1B1B16",
   paper: "#EFE7D8",
@@ -109,12 +110,12 @@ function Login() {
                   Password
                 </label>
                 
-                  <a href="/forgot-password"
+                  <Link to="/forgot-password"
                   className="text-xs hover:opacity-60 transition-opacity"
                   style={{ fontFamily: "'IBM Plex Mono', monospace", color: C.oxblood }}
                 >
                   Forgot?
-                </a>
+                </Link>
               </div>
 <div className="relative">
   <Lock
